@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>학생 대시보드</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <h1>출석 시스템</h1>
+            <p>👤 학생명: {{ username }}</p>
+            <p>📅 날짜: {{ current_date }}</p>
+        </header>
+
+        <main class="main-content">
+            <button class="attendance-btn" onclick="markAttendance()">✅ 출석 체크</button>
+            <p id="attendance-status"></p>
+        </main>
+
+        <footer class="footer">
+            <!-- ✅ 쿼리 파라미터 유지 -->
+            <button onclick="goToAttendance()">📊 내 출결 현황</button>
+            <button onclick="window.location.href='/'">🚪 로그아웃</button>
+        </footer>
+    </div>
+
+    <script>
+        function markAttendance() {
+            fetch('/attendance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `username={{ username }}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('attendance-status').innerText = data.message;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function goToAttendance() {
+            const username = "{{ username }}";
+            window.location.href = `/my_attendance?username=${username}`;
+        }
+    </script>
+</body>
+</html>

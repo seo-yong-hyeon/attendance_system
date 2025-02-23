@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>교사용 대시보드</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>교사용 대시보드</h2>
+        <p>환영합니다, {{ username }}님!</p>
+
+        <!-- ✅ 버튼으로 수정하여 통일성 확보 -->
+        <button onclick="window.location.href='/attendance_list'">📊 출결 현황 조회</button><br>
+        <button onclick="window.location.href='/'">🚪 로그아웃</button>
+    </div>
+</body>
+</html>

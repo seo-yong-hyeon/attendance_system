@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>출결 현황</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="attendance-container">
+        <h2>출결 현황</h2>
+
+        {% if records %}
+        <table>
+            <tr>
+                <th>아이디</th>
+                <th>날짜</th>
+                <th>상태</th>
+                <th>출석 시간</th>
+                <th>관리</th>
+            </tr>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.username }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.status }}</td>
+                <td>{{ record.check_in_time }}</td>
+                <td>
+                    <button onclick="window.location.href='/edit_attendance/{{ record.attendance_id }}'">✏️ 수정</button>
+                    <button onclick="confirmDelete('{{ record.attendance_id }}')">🗑️ 삭제</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="no-records">📋 출결 내역이 없습니다.</p>
+        {% endif %}
+
+        <button onclick="window.location.href='/teacher_dashboard'">🏠 대시보드로 돌아가기</button>
+    </div>
+
+    <script>
+        function confirmDelete(attendanceId) {
+            if (!attendanceId) {
+                alert("❌ 삭제할 수 없습니다. (ID 없음)");
+                return;
+            }
+
+            if (confirm("정말 삭제하시겠습니까?")) {
+                fetch(`/delete_attendance/${attendanceId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("❌ 삭제 중 오류가 발생했습니다.");
+                });
+            }
+        }
+    </script>
+</body>
+</html>

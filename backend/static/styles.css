@@ -1,0 +1,120 @@
+/* ✅ 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.dashboard-container, .attendance-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+/* ✅ 출석 체크 버튼 */
+.attendance-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.attendance-btn:hover {
+    background-color: #45a049;
+}
+
+/* ✅ 버튼 공통 스타일 */
+button, a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, a:hover {
+    background-color: #45a049;
+}
+
+#attendance-status {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* ✅ 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.no-records {
+    color: #888;
+    margin-top: 20px;
+}
+
+/* ✅ 반응형 디자인 */
+@media screen and (max-width: 600px) {
+    .dashboard-container, .attendance-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .attendance-btn {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    button, a {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 출결 현황</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="attendance-container">
+        <h2>{{ username }}님의 출결 현황</h2>
+
+        {% if records %}
+        <table border="1">
+            <tr>
+                <th>날짜</th>
+                <th>상태</th>
+                <th>출석 시간</th>
+            </tr>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.date }}</td>
+                <td>{{ record.status }}</td>
+                <td>{{ record.check_in_time }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="no-records">📋 출결 내역이 없습니다.</p>
+        {% endif %}
+
+        <a href="/student_dashboard?username={{ username }}">대시보드로 돌아가기</a>
+    </div>
+</body>
+</html>

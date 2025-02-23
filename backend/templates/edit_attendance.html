@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>출결 수정</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="attendance-container">
+        <h2>출결 수정</h2>
+
+        <form method="post" action="/update_attendance/{{ attendance.attendance_id }}">
+            <label for="status">출석 상태:</label>
+            <select name="status" id="status" required>
+                <option value="출석" {% if attendance.status == '출석' %}selected{% endif %}>출석</option>
+                <option value="지각" {% if attendance.status == '지각' %}selected{% endif %}>지각</option>
+                <option value="결석" {% if attendance.status == '결석' %}selected{% endif %}>결석</option>
+                <option value="조퇴" {% if attendance.status == '조퇴' %}selected{% endif %}>조퇴</option>
+            </select><br><br>
+
+            <label for="check_in_time">출석 시간:</label>
+            <input type="time" name="check_in_time" id="check_in_time" value="{{ attendance.check_in_time }}" required><br><br>
+
+            <button type="submit">💾 저장</button>
+            <button type="button" onclick="window.location.href='/attendance_list'">↩️ 취소</button>
+        </form>
+    </div>
+</body>
+</html>
